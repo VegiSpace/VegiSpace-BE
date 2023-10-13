@@ -43,3 +43,10 @@ class UserService:
         }
 
         return data
+    
+    def logout(self, refresh: str):
+        try:
+            RefreshToken(refresh).blacklist()
+
+        except TokenError:
+            raise InvalidToken()
