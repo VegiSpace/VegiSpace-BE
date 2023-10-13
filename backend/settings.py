@@ -61,7 +61,7 @@ INSTALLED_APPS = [
     # 'rest_auth.registration',
 
     # #django-rest-auth
-    # 'rest_framework_simplejwt.token_blacklist',
+    'rest_framework_simplejwt.token_blacklist',
     # 'dj_rest_auth',
 ]
 
@@ -194,4 +194,6 @@ from datetime import timedelta
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
+    'ROTATE_REFRESH_TOKENS': False,  # true면 토큰 갱신 시 refresh도 같이 갱신
+    'BLACKLIST_AFTER_ROTATION': True,
   }

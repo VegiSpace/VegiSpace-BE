@@ -98,3 +98,22 @@ class UserLoginApi(APIView, ApiAllowAnyMixin):
             'status':'success',
             'data':output_serializer.data,
         }, status=status.HTTP_200_OK)
+    
+class UserLogoutApi(APIView, ApiAuthMixin):
+    class UserLogoutSerializer(serializers.Serializer):
+        refresh = serializers.CharField()
+
+    def post(self, request):
+        serializer = self.UserLogoutSerializer(data = request.data)
+        serializer.is_valid(raise_exception=True)
+        data = serializer.validated_data
+
+        service = UserService()
+
+        service.logout(
+            refresh=data.get('refresh')
+        )
+
+        return Response({
+            'status': 'success',
+        }, status=status.HTTP_200_OK)
