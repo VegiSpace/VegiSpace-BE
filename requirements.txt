@@ -1,0 +1,14 @@
+asgiref==3.7.2
+certifi==2023.7.22
+distlib==0.3.7
+Django==4.2.6
+filelock==3.12.4
+pipenv==2023.10.3
+platformdirs==3.11.0
+sqlparse==0.4.4
+virtualenv==20.24.5
+djangorestframework==3.13.1
+djangorestframework-jwt==1.11.0
+djangorestframework-simplejwt==5.1.0
+drf-yasg==1.21.3
+Pillow==10.0.1
