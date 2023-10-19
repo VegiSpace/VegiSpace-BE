@@ -12,6 +12,11 @@ class UserSelector:
     def get_user(user):
         user_id = user.id
         return UserData.objects.get(id =user_id)
+    
+    # def get_user_list(self):
+    #     data = UserData.objects.all()
+    #     print(data)
+    #     return UserData.objects.all()
 
     #이메일에 해당하는 유저 객체 리턴 함수
     @staticmethod
@@ -37,3 +42,4 @@ class UserSelector:
     @staticmethod
     def check_name(nickname: str):
         return UserData.objects.filter(nickname=nickname).exists()
+    
