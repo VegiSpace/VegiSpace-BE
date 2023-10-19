@@ -49,54 +49,46 @@ class RegisterView(APIView):
         serializer.save()
         return Response(serializer.data)
     
-class UserListAPI(generics.ListAPIView):
-    queryset = UserData.objects.all()
-    serializer_class = UserSerializer
-    
-    # def get(self, request):
-    #     queryset = UserData.objects.all()
-    #     serializer_class = UserSerializer
-        # return Response(serializer_class.data)
 
-# class UserListAPI(APIView):
-#     permission_classes = (AllowAny,)
+class UserListAPI(APIView):
+    permission_classes = (AllowAny,)
 
-#     class UserListOutputSerializer(serializers.Serializer):
-#         nickname = serializers.CharField()
-#         email = serializers.EmailField()
-#         phone = serializers.CharField()
-#         date_joined = serializers.DateField()
+    class UserListOutputSerializer(serializers.Serializer):
+        nickname = serializers.CharField()
+        email = serializers.EmailField()
+        phone = serializers.CharField()
+        date_joined = serializers.DateTimeField()
 
-#     @swagger_auto_schema(
-#             operation_summary='전체 유저 리스트 조회',
-#             operation_description='''
-#                 전체 유저의 리스트를 조회 합니다.
-#             ''',
-#             responses={
-#                 "200":openapi.Response(
-#                     description="OK",
-#                     examples={
-#                         "application/json":{
-#                             'nickname':'vegispace',
-#                             'email':'vegispace@gmail.com',
-#                             'phone':'01012345678',
-#                             'date_joined':'2023-10-14',
-#                         },
-#                     }
-#                 ),
-#                 "400":openapi.Response(
-#                     description="Bad Request",
-#                 ),
-#             },
-#     )
-#     def get(self, request):
-#         users = UserSelector.get_user_list(self)
-#         serializers=self.UserListOutputSerializer(users)
+    @swagger_auto_schema(
+            operation_summary='전체 유저 리스트 조회',
+            operation_description='''
+                전체 유저의 리스트를 조회 합니다.
+            ''',
+            responses={
+                "200":openapi.Response(
+                    description="OK",
+                    examples={
+                        "application/json":{
+                            'nickname':'vegispace',
+                            'email':'vegispace@gmail.com',
+                            'phone':'01012345678',
+                            'date_joined':'2023-10-14',
+                        },
+                    }
+                ),
+                "400":openapi.Response(
+                    description="Bad Request",
+                ),
+            },
+    )
+    def get(self, request):
+        users = UserSelector.get_user_list(self)
+        serializers=self.UserListOutputSerializer(users, many=True)
 
-#         return Response({
-#             'status':'success',
-#             'data': serializers.data,
-#         }, status=status.HTTP_200_OK)
+        return Response({
+            'status':'success',
+            'data': serializers.data,
+        }, status=status.HTTP_200_OK)
 
     
 
