@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.core.management',
 
     # apps
     'users',
@@ -52,7 +53,7 @@ INSTALLED_APPS = [
     'drf_yasg',
 
     #cors
-    'corsheaders',
+    # 'corsheaders',
 
     # 'rest_framework.authtoken',
     # 'django.contrib.sites',
@@ -66,7 +67,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',     # CORS 관련 추가
+    # 'corsheaders.middleware.CorsMiddleware',     # CORS 관련 추가
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -84,7 +85,7 @@ ROOT_URLCONF = 'backend.urls'
 #                          'http://localhost:3000',
 #                          ]
 # CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_ALLOW_ALL = True
 
 
 TEMPLATES = [
