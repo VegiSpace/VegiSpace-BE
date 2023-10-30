@@ -180,12 +180,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #     ]
 # }
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework_simplejwt.authentication.JWTAuthentication',
-#     ),
-#     'DEFAULT_SCHEMA_CLASS': 'drf_yasg.generators.SwaggerGenerator',
-# }
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    # 'DEFAULT_SCHEMA_CLASS': 'drf_yasg.generators.SwaggerAutoSchema',
+}
 
 
 AUTH_USER_MODEL = 'users.UserData'
@@ -198,3 +198,7 @@ SIMPLE_JWT = {
     'ROTATE_REFRESH_TOKENS': False,  # true면 토큰 갱신 시 refresh도 같이 갱신
     'BLACKLIST_AFTER_ROTATION': True,
   }
+
+# SWAGGER_SETTINGS = {
+#     'DEFAULT_GENERATOR_CLASS': 'drf_yasg.generators.SwaggerAutoSchema',
+# }
