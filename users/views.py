@@ -12,7 +12,7 @@ from rest_framework import generics
 from rest_framework.response import Response
 
 from drf_yasg import openapi
-# from drf_yasg.utils import swagger_auto_schema
+from drf_yasg.utils import swagger_auto_schema
 # from drf_yasg.generators import SwaggerGenerator
 
 
@@ -25,24 +25,24 @@ from users.mixins import ApiAuthMixin, ApiAllowAnyMixin
 
 # view for registering users
 class RegisterView(APIView):
-    # @swagger_auto_schema(
-    #         request_body=UserSerializer,
-    #         operation_summary='''회원가입''',
-    #         operation_description='''email, password, name, phone 입력시 회원가입 ''',
-    #         responses={
-    #             "200": openapi.Response(
-    #                 description="OK",
-    #                 examples={
-    #                     "application/json":{
-    #                         "status":'success'
-    #                     }
-    #                 }
-    #             ),
-    #             "400": openapi.Response(
-    #                 description="Bad Request",
-    #             ),
-    #         },
-    # )
+    @swagger_auto_schema(
+            request_body=UserSerializer,
+            operation_summary='''회원가입''',
+            operation_description='''email, password, name, phone 입력시 회원가입 ''',
+            responses={
+                "200": openapi.Response(
+                    description="OK",
+                    examples={
+                        "application/json":{
+                            "status":'success'
+                        }
+                    }
+                ),
+                "400": openapi.Response(
+                    description="Bad Request",
+                ),
+            },
+    )
     def post(self, request):
         serializer = UserSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -59,28 +59,28 @@ class UserListAPI(APIView):
         phone = serializers.CharField()
         date_joined = serializers.DateTimeField()
 
-    # @swagger_auto_schema(
-    #         operation_summary='전체 유저 리스트 조회',
-    #         operation_description='''
-    #             전체 유저의 리스트를 조회 합니다.
-    #         ''',
-    #         responses={
-    #             "200":openapi.Response(
-    #                 description="OK",
-    #                 examples={
-    #                     "application/json":{
-    #                         'nickname':'vegispace',
-    #                         'email':'vegispace@gmail.com',
-    #                         'phone':'01012345678',
-    #                         'date_joined':'2023-10-14',
-    #                     },
-    #                 }
-    #             ),
-    #             "400":openapi.Response(
-    #                 description="Bad Request",
-    #             ),
-    #         },
-    # )
+    @swagger_auto_schema(
+            operation_summary='전체 유저 리스트 조회',
+            operation_description='''
+                전체 유저의 리스트를 조회 합니다.
+            ''',
+            responses={
+                "200":openapi.Response(
+                    description="OK",
+                    examples={
+                        "application/json":{
+                            'nickname':'vegispace',
+                            'email':'vegispace@gmail.com',
+                            'phone':'01012345678',
+                            'date_joined':'2023-10-14',
+                        },
+                    }
+                ),
+                "400":openapi.Response(
+                    description="Bad Request",
+                ),
+            },
+    )
     def get(self, request):
         users = UserSelector.get_user_list(self)
         serializers=self.UserListOutputSerializer(users, many=True)
@@ -136,27 +136,27 @@ class UserLoginApi(APIView, ApiAllowAnyMixin):
         access = serializers.CharField()
         nickname = serializers.CharField(allow_blank = True)
     
-    # @swagger_auto_schema(
-    #         request_body=UserLoginInputSerializer,
-    #         operation_summary='''로그인''',
-    #         operation_description='''email, password 입력시 로그인''',
-    #         responses={
-    #             "200": openapi.Response(
-    #                 description="OK",
-    #                 examples={
-    #                     "application/json":{
-    #                         'email':'vegispace@gmail.com',
-    #                         'refresh':'refresh token',
-    #                         'access':'access token',
-    #                         'nickname':'vegispace'
-    #                     }
-    #                 }
-    #             ),
-    #             "400": openapi.Response(
-    #                 description="Bad Request",
-    #             ),
-    #         },
-    # )
+    @swagger_auto_schema(
+            request_body=UserLoginInputSerializer,
+            operation_summary='''로그인''',
+            operation_description='''email, password 입력시 로그인''',
+            responses={
+                "200": openapi.Response(
+                    description="OK",
+                    examples={
+                        "application/json":{
+                            'email':'vegispace@gmail.com',
+                            'refresh':'refresh token',
+                            'access':'access token',
+                            'nickname':'vegispace'
+                        }
+                    }
+                ),
+                "400": openapi.Response(
+                    description="Bad Request",
+                ),
+            },
+    )
     
     def post(self, request):
         input_serializer = self.UserLoginInputSerializer(data=request.data)
@@ -182,24 +182,24 @@ class UserLogoutApi(APIView, ApiAuthMixin):
     class UserLogoutSerializer(serializers.Serializer):
         refresh = serializers.CharField(required=True)
 
-    # @swagger_auto_schema(
-    #         request_body=UserLogoutSerializer,
-    #         operation_summary='''로그아웃''',
-    #         operation_description='''refresh 토큰 입력시 로그아웃''',
-    #         responses={
-    #             "200": openapi.Response(
-    #                 description="OK",
-    #                 examples={
-    #                     "application/json":{
-    #                         "status":'success'
-    #                     }
-    #                 }
-    #             ),
-    #             "400": openapi.Response(
-    #                 description="Bad Request",
-    #             ),
-    #         },
-    # )
+    @swagger_auto_schema(
+            request_body=UserLogoutSerializer,
+            operation_summary='''로그아웃''',
+            operation_description='''refresh 토큰 입력시 로그아웃''',
+            responses={
+                "200": openapi.Response(
+                    description="OK",
+                    examples={
+                        "application/json":{
+                            "status":'success'
+                        }
+                    }
+                ),
+                "400": openapi.Response(
+                    description="Bad Request",
+                ),
+            },
+    )
     def post(self, request):
         serializer = self.UserLogoutSerializer(data = request.data)
         serializer.is_valid(raise_exception=True)
