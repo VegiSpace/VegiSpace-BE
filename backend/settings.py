@@ -143,11 +143,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -203,3 +203,7 @@ SIMPLE_JWT = {
 # SWAGGER_SETTINGS = {
 #     'DEFAULT_GENERATOR_CLASS': 'drf_yasg.generators.SwaggerAutoSchema',
 # }
+
+SWAGGER_SETTINGS = {
+   'USE_SESSION_AUTH': False
+}

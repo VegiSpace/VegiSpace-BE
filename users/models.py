@@ -39,6 +39,7 @@ class UserData(AbstractUser):
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     phone = models.CharField(max_length=100, blank=True)
+    code = models.CharField(max_length=5, blank=True)
     
     objects = UserManager()
     
