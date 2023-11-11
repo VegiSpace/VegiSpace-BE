@@ -203,3 +203,7 @@ SIMPLE_JWT = {
 # SWAGGER_SETTINGS = {
 #     'DEFAULT_GENERATOR_CLASS': 'drf_yasg.generators.SwaggerAutoSchema',
 # }
+
+SWAGGER_SETTINGS = {
+   'USE_SESSION_AUTH': False
+}
