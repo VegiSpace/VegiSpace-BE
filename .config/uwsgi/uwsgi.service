@@ -1,0 +1,15 @@
+[Unit]
+Description=uWSGI service
+After=syslog.target
+
+[Service]
+ExecStart=sudo /home/ubuntu/.local/share/virtualenvs/ubuntu-7Wf190Ea/bin/uwsgi -i /srv/VegiSpace-BE/.config/uwsgi/backend.ini
+
+Restart=always
+KillSignal=SIGQUIT
+Type=notify
+StandardError=syslog
+NotifyAccess=all
+
+[Install]
+WantedBy=multi-user.target
