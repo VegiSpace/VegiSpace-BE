@@ -29,7 +29,7 @@ class RegisterView(APIView):
     @swagger_auto_schema(
             request_body=UserSerializer,
             operation_summary='''회원가입''',
-            operation_description='''email, password, name, phone 입력시 회원가입 ''',
+            operation_description='''email,</br>password, </br> nickname, </br> phone, </br> agree_terms, </br> agree_personal, </br> agree_sms, </br> agree_email</br> 입력시 회원가입 ''',
             responses={
                 "200": openapi.Response(
                     description="OK",

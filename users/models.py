@@ -40,11 +40,15 @@ class UserData(AbstractUser):
     is_superuser = models.BooleanField(default=False)
     phone = models.CharField(max_length=100, blank=True)
     code = models.CharField(max_length=5, blank=True)
+    agree_terms = models.BooleanField(blank=False, default=True)
+    agree_personal= models.BooleanField(blank=False, default=True)
+    agree_sms = models.BooleanField(blank=False, default=True)
+    agree_email = models.BooleanField(blank=False, default=True)
     
     objects = UserManager()
     
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['nickname', 'phone']
+    REQUIRED_FIELDS = ['nickname', 'password']
 
     def __str__(self):
         return self.nickname
