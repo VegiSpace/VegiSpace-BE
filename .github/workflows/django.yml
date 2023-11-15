@@ -26,5 +26,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Run Tests
+      env:
+        SECRET_KEY: 'nh&$a#-$$oa8&8six#n*065c9m9(6w7g+8@5hfh#puj44na^*#'
       run: |
         python manage.py test
