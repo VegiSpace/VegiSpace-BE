@@ -20,6 +20,7 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view 
 from drf_yasg import openapi
 from django.conf import settings
+from django.views.static import serve
 # from django.conf.urls.static import static
 
 # from drf_yasg.generators import SwaggerAutoSchema
@@ -48,6 +49,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('users/', include('users.urls')),
+    re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
+    # re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
     # static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 ]
 if settings.DEBUG:
