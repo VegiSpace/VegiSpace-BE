@@ -36,10 +36,11 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    # 'localhost',
-    # '127.0.0.1' ,
-    '*',
-    ".ap-northeast-2.compute.amazonaws.com"
+    'localhost',
+    '127.0.0.1' ,
+    '15.165.138.179'
+    # '*',
+    # ".ap-northeast-2.compute.amazonaws.com"
 ]
 
 
