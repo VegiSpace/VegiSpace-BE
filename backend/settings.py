@@ -38,7 +38,7 @@ DEBUG = False
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1' ,
-    '15.165.138.179'
+    '15.165.138.179',
     '.vegispace.co.kr'
     # '*',
     # ".ap-northeast-2.compute.amazonaws.com"
